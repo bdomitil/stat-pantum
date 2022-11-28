@@ -25,6 +25,8 @@ var (
 	printerStatusOID []string = []string{"1.3.6.1.4.1.40093.1.1.3.9"}
 	drumLeftOID      []string = []string{"1.3.6.1.4.1.40093.8.1.4"}
 	firmwareOID      []string = []string{"1.3.6.1.4.1.40093.1.1.1.1"}
+	engineVersionOID []string = []string{"1.3.6.1.4.1.40093.1.1.1.3"}
+	serialNumberOID  []string = []string{"1.3.6.1.4.1.40093.1.1.1.5"}
 )
 
 func snmpGetINT(OID []string) int {

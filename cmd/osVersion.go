@@ -21,8 +21,7 @@ var osVersionCmd = &cobra.Command{
 	Short: "print of version",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		res := getOSVersion()
-		fmt.Println(res)
+		fmt.Println(getOSVersion())
 	},
 }
 
