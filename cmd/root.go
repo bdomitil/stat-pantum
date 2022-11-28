@@ -24,6 +24,7 @@ var (
 	fatalErrorOID    []string = []string{"1.3.6.1.4.1.40093.1.1.3.15.1"}
 	printerStatusOID []string = []string{"1.3.6.1.4.1.40093.1.1.3.9"}
 	drumLeftOID      []string = []string{"1.3.6.1.4.1.40093.8.1.4"}
+	firmwareOID      []string = []string{"1.3.6.1.4.1.40093.1.1.1.1"}
 )
 
 func snmpGetINT(OID []string) int {
@@ -41,6 +42,23 @@ func snmpGetINT(OID []string) int {
 	}
 	statusINT := res.Variables[0].Value.(int)
 	return statusINT
+}
+
+func snmpGetASCII(OID []string) []uint8 {
+	sn := gosnmp.Default
+	sn.Target = host
+	sn.Community = comm
+	err := sn.Connect()
+	if err != nil {
+		log.Fatalln("Error connnecting to " + host + " via snmp")
+	}
+	defer sn.Conn.Close()
+	res, err := sn.Get(OID)
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+	responseSTRING := res.Variables[0].Value.([]uint8)
+	return responseSTRING
 }
 
 // rootCmd represents the base command when called without any subcommands
